@@ -1,0 +1,42 @@
+[package]
+name = "devtree"
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+repository = "https://github.com/pichi-vm/devtree"
+description = "Zero-copy, no_std devicetree (FDT) parser, writer, and overlay applier."
+
+[features]
+# Owned, drainable representation built atop the zero-copy parser. Pulls in
+# `alloc`; off by default so bare-metal consumers (e.g. tatu) stay pure no_std.
+alloc = []
+
+[dependencies]
+
+[lints.rust]
+unsafe_code = "deny"
+missing_debug_implementations = "warn"
+rust_2018_idioms = { level = "warn", priority = -1 }
+# Noisy and low-value (esp. in tests: `Tree` vs `Tree<'_>`); the rest of
+# rust_2018_idioms stays on.
+elided_lifetimes_in_paths = "allow"
+unreachable_pub = "warn"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+module_name_repetitions = "allow"
+missing_errors_doc = "allow"
+must_use_candidate = "allow"
+doc_markdown = "allow"
+type_complexity = "allow"
+similar_names = "allow"
+struct_field_names = "allow"
+needless_continue = "allow"
+cast_possible_truncation = "allow"
+cast_sign_loss = "allow"
+cast_lossless = "allow"
+too_many_lines = "allow"
+missing_panics_doc = "allow"
+needless_pass_by_value = "allow"
+uninlined_format_args = "allow"
