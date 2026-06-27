@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# SPDX-FileCopyrightText: Advanced Micro Devices, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
 # Regenerate the .dtb / .dtbo binary fixtures from their .dts / .dtso
 # sources using dtc. Both sources and binaries are checked into the
 # repo; `cargo test` reads the binaries via include_bytes! and does not

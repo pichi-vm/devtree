@@ -12,6 +12,8 @@ ignore = []
 [bans]
 multiple-versions = "warn"
 wildcards = "deny"
+# Workspace-internal path deps carry no version; don't flag them as wildcards.
+allow-wildcard-paths = true
 
 [sources]
 unknown-registry = "deny"
