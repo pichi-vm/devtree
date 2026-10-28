@@ -35,7 +35,7 @@ fn every_limit_variant_renders_nonempty() {
 #[test]
 fn buffer_too_small_renders_nonempty() {
     let s = render(Error::BufferTooSmall { needed: 0 });
-    assert!(!s.is_empty());
+    assert_ne!(s, "");
     assert!(s.starts_with("destination buffer"), "{s:?}");
 }
 

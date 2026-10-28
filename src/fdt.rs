@@ -328,10 +328,13 @@ pub(crate) fn value_as_u32s(value: &[u8]) -> Option<impl Iterator<Item = u32> + 
     if !value.len().is_multiple_of(4) {
         return None;
     }
-    Some(value.chunks_exact(4).map(|c| {
-        let arr: [u8; 4] = c.try_into().unwrap_or([0; 4]);
-        u32::from_be_bytes(arr)
-    }))
+    Some(
+        value
+            .as_chunks::<4>()
+            .0
+            .iter()
+            .map(|c| u32::from_be_bytes(*c)),
+    )
 }
 
 /// NUL-separated UTF-8 stringlist (FDT `stringlist` encoding). Strict: must

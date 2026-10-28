@@ -525,9 +525,8 @@ fn walk_local_fixups<'a>(
         if !raw.len().is_multiple_of(4) {
             return Err(MalformedKind::BadFixupEntry.into());
         }
-        for chunk in raw.chunks_exact(4) {
-            let arr: [u8; 4] = chunk.try_into().map_err(|_| MalformedKind::BadFixupEntry)?;
-            let byte_offset = u32::from_be_bytes(arr);
+        for chunk in raw.as_chunks::<4>().0 {
+            let byte_offset = u32::from_be_bytes(*chunk);
             check_rewrite_in_bounds(byte_offset, target_len)?;
             push_rewrite(
                 rewrites,
