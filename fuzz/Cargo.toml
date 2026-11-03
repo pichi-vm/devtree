@@ -40,3 +40,6 @@ path = "fuzz_targets/fuzz_owned.rs"
 test = false
 doc = false
 bench = false
+
+[lints.clippy]
+self_named_module_files = "deny"
